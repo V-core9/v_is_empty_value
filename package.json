@@ -1,7 +1,7 @@
 {
   "name": "v-to-md5",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "description": "Generates MD5 hash value from a provided string or returns false in case of an error.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -10,9 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/V-core9/v-to-md5.git"
   },
-  "keywords": [],
+  "keywords": ["md5","hashing", "md5 hash"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/V-core9/v-to-md5/issues"
   },

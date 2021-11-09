@@ -11,4 +11,3 @@ How to use:
     
     console.log( v_to_md5("demo_password_123456) ) //-> returns hash : b9a0dc00aff156a2a5e915ba00a590ba 
 
-
