@@ -1,0 +1,23 @@
+{
+  "name": "v-to-md5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V-core9/v-to-md5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/V-core9/v-to-md5/issues"
+  },
+  "homepage": "https://github.com/V-core9/v-to-md5#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
