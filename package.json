@@ -1,5 +1,5 @@
 {
-  "name": "@v-core9/is_empty_value",
+  "name": "v_is_empty_value",
   "version": "1.0.3",
   "description": "Checks if value is empty then returns true. Or false in case it is not technically empty.",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/V-core9/is_empty_value.git"
+    "url": "git+https://github.com/V-core9/v_is_empty_value.git"
   },
   "keywords": ["is_empty_value","empty", "checkEmpty", "testEmptyValue"],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/V-core9/is_empty_value/issues"
+    "url": "https://github.com/V-core9/v_is_empty_value/issues"
   },
-  "homepage": "https://github.com/V-core9/is_empty_value#readme",
+  "homepage": "https://github.com/V-core9/v_is_empty_value#readme",
   "devDependencies": {
     "jest": "^27.3.1"
   }
