@@ -1,4 +1,4 @@
-const v_to_sha256 = require("./v_to_sha256");
+const { is_empty_value, v0 } = require("./is_empty_value");
 
-  console.log(v_to_sha256("demo_password_123456"));
+console.log(is_empty_value("demo_password_123456"));
 

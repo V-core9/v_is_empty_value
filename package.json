@@ -1,5 +1,5 @@
 {
-  "name": "v_to_sha256",
+  "name": "is_empty_value",
   "version": "1.0.2",
   "description": "Generates sha256 hash value from a provided string or returns false in case of an error.",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/V-core9/v-to-sha256.git"
+    "url": "git+https://github.com/V-core9/is_empty_value.git"
   },
-  "keywords": ["sha256","hashing", "sha256 hash"],
+  "keywords": ["is_empty_value","empty", "checkEmpty", "testEmptyValue"],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/V-core9/v-to-sha256/issues"
+    "url": "https://github.com/V-core9/is_empty_value/issues"
   },
-  "homepage": "https://github.com/V-core9/v-to-sha256#readme",
+  "homepage": "https://github.com/V-core9/is_empty_value#readme",
   "devDependencies": {
     "jest": "^27.3.1"
   }

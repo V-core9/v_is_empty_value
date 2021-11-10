@@ -1,9 +1,23 @@
-const v_to_sha256 = require("../source/v_to_sha256");
+const is_empty_value = require("../source/is_empty_value");
 
-test("creates sha256 hash from string 'demo_password_123456' ", () => {
-  expect(v_to_sha256("demo_password_123456")).toBe("4491875b6270ce2dd38068c03e1ce0251e06396cddb5fe87f51fe1024bfceb1a");
+test("Checks if it's empty value for multiple strings", () => {
+  expect(is_empty_value("demo_password_123456")).toBe(false);
+  expect(is_empty_value("demo_123456")).toBe(false);
+  expect(is_empty_value("15987w@#$%#@^")).toBe(false);
+  expect(is_empty_value("demo_passwW$@#$3456")).toBe(false);
 });
 
-test("creates sha256 hash from string 'demo_password_123456' ", () => {
-  expect(v_to_sha256()).toBe(false);
+test("Checks if it's empty value for multiple strings", () => {
+  expect(is_empty_value("")).toBe(false);
+  expect(is_empty_value()).toBe(false);
+  expect(is_empty_value(null)).toBe(false);
+  expect(is_empty_value(undefined)).toBe(false);
+});
+
+
+test("Checks if numbers are empty value", () => {
+  expect(is_empty_value(11)).toBe(false);
+  expect(is_empty_value(19848156)).toBe(false);
+  expect(is_empty_value(35373473452341)).toBe(false);
+  expect(is_empty_value(-89919)).toBe(false);
 });

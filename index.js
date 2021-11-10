@@ -1,3 +1,3 @@
-const v_to_sha256 = require("./source/v_to_sha256");
+const is_empty_value = require("./source/is_empty_value");
 
-module.exports = v_to_sha256;
+module.exports = is_empty_value;
