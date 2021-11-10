@@ -1,6 +1,6 @@
 {
   "name": "v_to_md5",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Generates MD5 hash value from a provided string or returns false in case of an error.",
   "main": "index.js",
   "scripts": {
