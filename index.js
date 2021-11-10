@@ -1,3 +1,3 @@
-const is_empty_value = require("./source/is_empty_value");
+const v_is_empty_value = require("./source/v_is_empty_value");
 
-module.exports = is_empty_value;
+module.exports = v_is_empty_value;
