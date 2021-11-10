@@ -1,15 +1,13 @@
-# v_to_md5
+# v_to_sha256
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bddede2a4cd345e78743086499b880b9)](https://app.codacy.com/gh/V-core9/v_to_md5?utm_source=github.com&utm_medium=referral&utm_content=V-core9/v_to_md5&utm_campaign=Badge_Grade_Settings)
+Install using command :
 
-Install using command : 
+    npm install v_to_sha256 --save
 
-    npm install v_to_md5 --save
+How to use:
 
-How to use: 
-  
-    const v_to_md5 = require("v_to_md5");
+    const v_to_sha256 = require("v_to_sha256");
 
-    console.log( v_to_md5("demo_password_123456") )
-    
-//-> returns hash : b9a0dc00aff156a2a5e915ba00a590ba
+    console.log( v_to_sha256("demo_password_123456") )
+
+//-> returns hash : 4491875b6270ce2dd38068c03e1ce0251e06396cddb5fe87f51fe1024bfceb1a

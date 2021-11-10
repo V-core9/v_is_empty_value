@@ -1,22 +1,22 @@
 {
-  "name": "v_to_md5",
+  "name": "v_to_sha256",
   "version": "1.0.8",
-  "description": "Generates MD5 hash value from a provided string or returns false in case of an error.",
+  "description": "Generates sha256 hash value from a provided string or returns false in case of an error.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/V-core9/v-to-md5.git"
+    "url": "git+https://github.com/V-core9/v-to-sha256.git"
   },
-  "keywords": ["md5","hashing", "md5 hash"],
+  "keywords": ["sha256","hashing", "sha256 hash"],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/V-core9/v-to-md5/issues"
+    "url": "https://github.com/V-core9/v-to-sha256/issues"
   },
-  "homepage": "https://github.com/V-core9/v-to-md5#readme",
+  "homepage": "https://github.com/V-core9/v-to-sha256#readme",
   "devDependencies": {
     "jest": "^27.3.1"
   }
