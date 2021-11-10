@@ -1,5 +1,7 @@
 # 👨‍💻 is_empty_value
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c7b2d814ac52490cbd96320824a4cea8)](https://app.codacy.com/gh/V-core9/is_empty_value?utm_source=github.com&utm_medium=referral&utm_content=V-core9/is_empty_value&utm_campaign=Badge_Grade_Settings)
+
 🔩 Install using command :
 
     npm install is_empty_value
