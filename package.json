@@ -1,6 +1,6 @@
 {
   "name": "v_to_sha256",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates sha256 hash value from a provided string or returns false in case of an error.",
   "main": "index.js",
   "scripts": {
