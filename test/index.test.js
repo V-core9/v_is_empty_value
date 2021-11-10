@@ -1,4 +1,4 @@
-const {is_empty_value, v0} = require("../source/is_empty_value");
+const { is_empty_value, v0 } = require("../source/is_empty_value");
 
 test("Checks is_empty_value for string [ demo_password_123456 ]", () => {
   expect(is_empty_value("demo_password_123456")).toBe(false);
