@@ -1,5 +1,5 @@
 {
-  "name": "is_empty_value",
+  "name": "@v-core9/is_empty_value",
   "version": "1.0.3",
   "description": "Checks if value is empty then returns true. Or false in case it is not technically empty.",
   "main": "index.js",
