@@ -1,17 +1,28 @@
 {
   "name": "v_is_empty_value",
-  "version": "1.0.4",
-  "description": "Checks if value is empty then returns true. Or false in case it is not technically empty.",
+  "version": "1.0.5",
+  "description": "Simple async checker functions for empty values. Can check if a value is empty or not. [ isEmpty(val) / notEmpty(val) ]",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepack": "npm run test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/V-core9/v_is_empty_value.git"
   },
-  "keywords": ["is_empty_value","empty", "checkEmpty", "testEmptyValue"],
-  "author": "",
+  "keywords": [
+    "is_not_empty_value",
+    "is_empty_value",
+    "empty",
+    "checkEmpty",
+    "testEmptyValue",
+    "async/await",
+    "isEmpty",
+    "notEmpty",
+    "v-core9"
+  ],
+  "author": "v-core9",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/V-core9/v_is_empty_value/issues"
