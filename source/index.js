@@ -1,6 +1,6 @@
 //? Function that checks if the value is empty
 const v_is_empty = async (value) => {
-  if (value instanceof Date) {
+  if (value instanceof Date || typeof value === 'boolean') {
     //! Returns false if it's instance of Date Object
     return false;
   } else if (typeof value === "object" && value !== null) {
@@ -8,7 +8,7 @@ const v_is_empty = async (value) => {
     return (Object.keys(value) === null || Object.keys(value).length === 0);
   }
   //! Returns true if value is null or undefined or empty string
-  return (!value ? true : false);
+  return !value;
 };
 
 //? Function that will check if value is not empty
