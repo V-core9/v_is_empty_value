@@ -1,4 +1,4 @@
-//? Function that checks if the value is empty
+
 const v_is_empty = async (value) => {
   if (value instanceof Date || typeof value === 'boolean') {
     //! Returns false if it's instance of Date Object
@@ -11,10 +11,9 @@ const v_is_empty = async (value) => {
   return !value;
 };
 
-//? Function that will check if value is not empty
-const v_is_not_empty = async (value) => !(await v_is_empty(value));
-
 module.exports = {
+  //? Function that checks if the value is empty
   isEmpty: v_is_empty,
-  notEmpty: v_is_not_empty
+  //? Function that will check if value is not empty
+  notEmpty:  async (value) => !await v_is_empty(value)
 };
