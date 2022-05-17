@@ -53,7 +53,7 @@ const testItems = [
     expect: false,
   },
 
-  //? Empty arrau : isEmpty >> true
+  //? Empty array : isEmpty >> true
   {
     input: [],
     expect: true,
@@ -61,7 +61,7 @@ const testItems = [
 
   //? Not  empty array : isEmpty >> false
   {
-    input: [ "123", "456" ],
+    input: ["123", "456"],
     expect: false,
   },
 
@@ -134,15 +134,28 @@ const testItems = [
     input: false,
     expect: false,
   },
+
+  //! Random Custom Things
+  //? Error - Should detect it as something else than empty
+  {
+    input: new Error(),
+    expect: false,
+  },
+
+  //? Promise - Should not return empty
+  {
+    input: new Promise((resolve, reject) => resolve(true)),
+    expect: false,
+  },
 ];
 
-testItems.forEach( async (item) => {
+testItems.forEach(async (item) => {
 
-  test(String(item.input)+" :: isEmpty >> "+item.expect, async () => {
+  test(String(item.input) + " :: isEmpty >> " + item.expect, async () => {
     expect(await isEmpty(item.input)).toBe(item.expect);
   });
 
-  test(String(item.input)+" :: notEmpty >> "+!item.expect, async () => {
+  test(String(item.input) + " :: notEmpty >> " + !item.expect, async () => {
     expect(await notEmpty(item.input)).toBe(!item.expect);
   });
 
