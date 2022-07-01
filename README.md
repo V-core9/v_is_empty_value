@@ -16,30 +16,58 @@ Simple checker for Empty/NotEmpty values. Checking Numbers, Null, NaN, Strings, 
 
 ### 🪁 How to use
 
-    const { isEmpty, notEmpty } = require("v_is_empty_value");
+    const { isEmpty, notEmpty, isEmptySync, notEmptySync } = require("v_is_empty_value");
 
 ### ☑ Things it confirms Empty
 
+    // Empty
     await isEmpty()  //-> TRUE
+    isEmptySync()  //-> TRUE
+
     await notEmpty()  //-> FALSE
+    notEmptySync()  //-> FALSE
 
+    // Empty String
     await isEmpty("")  //-> TRUE
+    isEmptySync("")  //-> TRUE
+
     await notEmpty("")  //-> FALSE
+    notEmptySync("")  //-> FALSE
 
+    // Null
     await isEmpty(null)  //-> TRUE
+    isEmptySync(null)  //-> TRUE
+
     await notEmpty(null)  //-> FALSE
+    notEmptySync(null)  //-> FALSE
 
+    // Undefined
     await isEmpty(undefined)  //-> TRUE
+    isEmptySync(undefined)  //-> TRUE
+
     await notEmpty(undefined)  //-> FALSE
+    notEmptySync(undefined)  //-> FALSE
 
+    // NaN
     await isEmpty(NaN)  //-> TRUE
+    isEmptySync(NaN)  //-> TRUE
+
     await notEmpty(NaN)  //-> FALSE
+    notEmptySync(NaN)  //-> FALSE
 
+    // Object
     await isEmpty({})  //-> TRUE
-    await notEmpty({})  //-> FALSE
+    isEmptySync({})  //-> TRUE
 
+    await notEmpty({})  //-> FALSE
+    notEmptySync({})  //-> FALSE
+
+    // Array
     await isEmpty([])  //-> TRUE
+    isEmptySync([])  //-> TRUE
+
     await notEmpty([])  //-> FALSE
+    notEmptySync([])  //-> FALSE
 
 ### ☑ Few things it confirms NOT Empty
 

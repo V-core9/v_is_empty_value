@@ -1,8 +1,8 @@
 {
   "name": "v_is_empty_value",
-  "version": "1.0.8",
-  "description": "Simple async checker functions for empty values. Can check if a value is empty or not. [ isEmpty(val) / notEmpty(val) ]",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "Simple async/sync checker functions for empty values. Can check if a value is empty or not. [ isEmpty(val) / notEmpty(val) ]",
+  "main": "source/index.js",
   "scripts": {
     "test": "jest",
     "prepack": "npm run test"

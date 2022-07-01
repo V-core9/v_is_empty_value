@@ -1,6 +1,10 @@
 coverage
 node_modules
-
+__tests__
 .git
 .gitignore
 package-lock.json
+.editorconfig
+.jshintrc
+coverage.png
+jest.config.js

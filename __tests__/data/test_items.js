@@ -1,11 +1,10 @@
-const { isEmpty, notEmpty } = require("..");
 
 //? Listing of test scenarios
 //* input >> Value that will get passed into the function
 //* expected >> Expected output of the function [true/false]
 //! isEmpty(val) == expected || notEmpty(val) == !expected
 
-const testItems = [
+module.exports = [
 
   //! EMPTY VALUES [undefined/null/''/NaN]
   //? empty string "" : isEmpty >> true
@@ -148,15 +147,3 @@ const testItems = [
     expect: false,
   },
 ];
-
-testItems.forEach(async (item) => {
-
-  test(String(item.input) + " :: isEmpty >> " + item.expect, async () => {
-    expect(await isEmpty(item.input)).toBe(item.expect);
-  });
-
-  test(String(item.input) + " :: notEmpty >> " + !item.expect, async () => {
-    expect(await notEmpty(item.input)).toBe(!item.expect);
-  });
-
-});
