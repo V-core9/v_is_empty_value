@@ -18,6 +18,11 @@ Simple checker for Empty/NotEmpty values. Checking Numbers, Null, NaN, Strings, 
 
     const { isEmpty, notEmpty, isEmptySync, notEmptySync } = require("v_is_empty_value");
 
+or you can import...
+
+    import v_is_empty_value from 'v_is_empty_value';
+    const { isEmpty, notEmpty, isEmptySync, notEmptySync } = v_is_empty_value;
+
 ### ☑ Things it confirms Empty
 
     // Empty
@@ -85,7 +90,9 @@ Simple checker for Empty/NotEmpty values. Checking Numbers, Null, NaN, Strings, 
 
 ## 🚀 Benchmarking
 
-Currently does more than ~1100 verifications per millisecond. Both functions use the almost same amount of time so they average about the same (+-5%).
+Performance depends on whether you're using asynchronous or synchronous version. Sync versions tend to run slower.
+Currently asynchronous version achieves up to 20k checks per millisecond, while sync version does up to 8k checks per ms.
+> NOTE: This version improves only performance of the code and cuts down on execution time, thus resulting in such performance uplift without changing/breaking any test cases.
 
 ## ✅ Test Results and Coverage with Jest
 
