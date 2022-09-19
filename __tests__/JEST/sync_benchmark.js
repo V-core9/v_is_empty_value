@@ -8,9 +8,9 @@ test('benchmarking isEmpty', async () => {
     await isEmpty(i);
   }
   const average = (1 / ((Date.now() - start) / itemCount));
-  console.log(average);
+  //console.log(average);
 
-  expect(average).toBeGreaterThan(500); //? Items Per Millisecond
+  expect(average).toBeGreaterThan(2000); //? Items Per Millisecond
 });
 
 test('benchmarking notEmpty', async () => {
@@ -19,7 +19,7 @@ test('benchmarking notEmpty', async () => {
     await notEmpty(i);
   }
   const average = (1 / ((Date.now() - start) / itemCount));
-  console.log(average);
+  //console.log(average);
 
-  expect(average).toBeGreaterThan(500); //? Items Per Millisecond
+  expect(average).toBeGreaterThan(2000); //? Items Per Millisecond
 });
