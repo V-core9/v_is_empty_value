@@ -8,9 +8,9 @@ test('benchmarking isEmptySync', () => {
     isEmptySync(i);
   }
   const average = (1 / ((Date.now() - start) / itemCount));
-  console.log(average);
+  //console.log(average);
 
-  expect(average).toBeGreaterThan(500); //? Items Per Millisecond
+  expect(average).toBeGreaterThan(6000); //? Items Per Millisecond
 });
 
 test('benchmarking notEmptySync', () => {
@@ -19,7 +19,7 @@ test('benchmarking notEmptySync', () => {
     notEmptySync(i);
   }
   const average = (1 / ((Date.now() - start) / itemCount));
-  console.log(average);
+  //console.log(average);
 
-  expect(average).toBeGreaterThan(500); //? Items Per Millisecond
+  expect(average).toBeGreaterThan(6000); //? Items Per Millisecond
 });
