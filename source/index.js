@@ -1,15 +1,13 @@
 const empty = (value) => {
-  const vType = typeof value;
-
   const vInst = value?.constructor?.name || null;
-  // console.log(vInst);
+  //console.log(vInst);
 
   //! Returns false if it's instance of Date, Promise, Error or typeof Boolean
-  if (['Date', 'Promise', 'Error'].indexOf(vInst) !== -1 || vType === 'boolean') return false;
+  if (['Date', 'Promise', 'Error', 'Boolean'].indexOf(vInst) !== -1) return false;
   //if (value instanceof Date || value instanceof Promise || value instanceof Error || vType === 'boolean') return false;
 
   //! Returns true if Array or Object is empty
-  if (vType === "object" && value !== null) return (Object.keys(value) === null || Object.keys(value).length === 0);
+  if (typeof value === "object" && value !== null) return (Object.keys(value) === null || Object.keys(value).length === 0);
 
   //! Returns true if value is null or undefined or empty string
   return (!value);
