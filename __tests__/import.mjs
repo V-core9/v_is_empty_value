@@ -1,4 +1,4 @@
-import v_is_empty_value from '../source/index.js';
+import v_is_empty_value from '../dist';
 
 const { isEmpty, notEmpty, isEmptySync, notEmptySync } = v_is_empty_value;
 

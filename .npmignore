@@ -12,3 +12,16 @@ jest.config.js
 
 coverage.png
 coverage
+
+
+.tryouts
+.github
+
+src
+src/**
+source
+source/**
+
+tsconfig.json
+README.md
+LICENCE

@@ -1,4 +1,4 @@
-const { isEmpty, notEmpty } = require("../../source");
+const { isEmpty, notEmpty } = require("../../dist");
 
 const itemCount = 1000000;
 
