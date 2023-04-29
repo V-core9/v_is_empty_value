@@ -1,4 +1,4 @@
-const { isEmpty, notEmpty } = require("../../source");
+const { isEmpty, notEmpty } = require("../../dist");
 const testItems = require('../data/test_items');
 
 

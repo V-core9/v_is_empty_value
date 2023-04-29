@@ -1,4 +1,4 @@
-const { isEmptySync, notEmptySync } = require("../../source");
+const { isEmptySync, notEmptySync } = require("../../dist");
 
 const itemCount = 1000000;
 
