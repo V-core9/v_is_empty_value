@@ -2,24 +2,22 @@ const { isEmptySync, notEmptySync } = require("../../dist");
 
 const itemCount = 1000000;
 
-test('benchmarking isEmptySync', () => {
+test("benchmarking isEmptySync", () => {
   const start = Date.now();
   for (let i = 0; i < itemCount; i++) {
     isEmptySync(i);
   }
-  const average = (1 / ((Date.now() - start) / itemCount));
-  //console.log(average);
+  const average = 1 / ((Date.now() - start) / itemCount);
 
   expect(average).toBeGreaterThan(6000); //? Items Per Millisecond
 });
 
-test('benchmarking notEmptySync', () => {
+test("benchmarking notEmptySync", () => {
   const start = Date.now();
   for (let i = 0; i < itemCount; i++) {
     notEmptySync(i);
   }
-  const average = (1 / ((Date.now() - start) / itemCount));
-  //console.log(average);
+  const average = 1 / ((Date.now() - start) / itemCount);
 
   expect(average).toBeGreaterThan(6000); //? Items Per Millisecond
 });

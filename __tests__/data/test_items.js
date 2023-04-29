@@ -1,11 +1,9 @@
-
 //? Listing of test scenarios
 //* input >> Value that will get passed into the function
 //* expected >> Expected output of the function [true/false]
 //! isEmpty(val) == expected || notEmpty(val) == !expected
 
 module.exports = [
-
   //! EMPTY VALUES [undefined/null/''/NaN]
   //? empty string "" : isEmpty >> true
   {
@@ -15,7 +13,7 @@ module.exports = [
 
   //? empty string '' : isEmpty >> true
   {
-    input: '',
+    input: "",
     expect: true,
   },
 
@@ -31,10 +29,16 @@ module.exports = [
     expect: true,
   },
 
-  //? NaN : isEmpty >> true
+  //? NaN : isEmpty >> false
   {
     input: NaN,
-    expect: true,
+    expect: false,
+  },
+
+  //? isNaN : isEmpty >> false
+  {
+    input: isNaN,
+    expect: false,
   },
 
   //! OBJECTS
@@ -96,9 +100,15 @@ module.exports = [
     expect: false,
   },
 
+  //? 0 : isEmpty >> false
+  {
+    input: 0,
+    expect: false,
+  },
+
   //? -.89919 : isEmpty >> false
   {
-    input: -.89919,
+    input: -0.89919,
     expect: false,
   },
 

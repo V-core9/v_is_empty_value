@@ -1,6 +1,7 @@
 import { V_Is_Empty_Value } from "../index";
 
 const is_empty = (value: any) => {
+  //if (value === undefined) return true;
   const vInst = value?.constructor?.name || null;
   //! Returns false if it's instance of Date, Promise, Error or typeof Boolean
   if (["Date", "Promise", "Error", "Boolean"].indexOf(vInst) !== -1)

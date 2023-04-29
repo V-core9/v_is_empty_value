@@ -1,6 +1,8 @@
 const { isEmpty, notEmpty } = require("../../dist");
 const testItems = require('../data/test_items');
 
+var assert = require('assert');
+
 
 testItems.forEach(async (item) => {
 

@@ -1,11 +1,11 @@
-const { isEmpty, notEmpty } = require("../../dist");
+const { isEmptySync, notEmptySync } = require("../../dist");
 
 const itemCount = 1000000;
 
-test('benchmarking isEmpty', async () => {
+test('benchmarking isEmpty',  () => {
   const start = Date.now();
   for (let i = 0; i < itemCount; i++) {
-    await isEmpty(i);
+    isEmptySync(i);
   }
   const average = (1 / ((Date.now() - start) / itemCount));
   //console.log(average);
@@ -13,13 +13,12 @@ test('benchmarking isEmpty', async () => {
   expect(average).toBeGreaterThan(2000); //? Items Per Millisecond
 });
 
-test('benchmarking notEmpty', async () => {
+test('benchmarking notEmpty',  () => {
   const start = Date.now();
   for (let i = 0; i < itemCount; i++) {
-    await notEmpty(i);
+    notEmptySync(i);
   }
   const average = (1 / ((Date.now() - start) / itemCount));
-  //console.log(average);
 
   expect(average).toBeGreaterThan(2000); //? Items Per Millisecond
 });
