@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "sourceMap": true,
+    "sourceMap": false,
     "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es2015"
+    "target": "ES2022"
   },
   "include": [
     "src/**/*"
