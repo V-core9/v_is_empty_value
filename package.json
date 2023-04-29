@@ -1,6 +1,6 @@
 {
   "name": "v_is_empty_value",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Simple async/sync checker functions for empty values. Can check if a value is empty or not. [ isEmpty(val) / notEmpty(val) ]",
   "main": "./dist/index.js",
   "scripts": {
