@@ -11,12 +11,16 @@ package-lock.json
 jest.config.js
 jest.config.mjs
 rollup.config.json
+rollup.config.js
 
 coverage.png
 coverage
 
 .tryouts
 .github
+
+_OLD_
+_OLD_/**
 
 src
 src/**
