@@ -6,7 +6,7 @@
   "module": "./dist/v_is_empty_value.es.js",
   "jsnext:main": "./dist/v_is_empty_value.cjs.js",
   "scripts": {
-    "types:export": "sh -c \"npx -p typescript tsc ./src/*.js --declaration --allowJs --emitDeclarationOnly --outDir types\"",
+    "export:types": "sh -c \"npx -p typescript tsc ./src/*.js --declaration --allowJs --emitDeclarationOnly --outDir types\"",
     "test": "jest",
     "build": "rollup -c ./rollup.config.js --bundleConfigAsCjs",
     "prepack": "npm run build && npm run test"
