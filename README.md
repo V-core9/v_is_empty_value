@@ -6,87 +6,62 @@ Simple checker for Empty/NotEmpty values. Checking Numbers, Null, NaN, Strings, 
 [![CodeQL](https://github.com/V-core9/v_is_empty_value/actions/workflows/codeql.yml/badge.svg)](https://github.com/V-core9/v_is_empty_value/actions/workflows/codeql.yml)
 [![njsscan sarif](https://github.com/V-core9/v_is_empty_value/actions/workflows/njsscan.yml/badge.svg)](https://github.com/V-core9/v_is_empty_value/actions/workflows/njsscan.yml)
 
-### 🔩 Install using command
-
-    npm install v_is_empty_value
-
-### 🎭 And save for later re-install
+### 🔩 Install using command &  save for later
 
     npm install v_is_empty_value --save
 
 ### 🪁 How to use
 
-    const { isEmpty, notEmpty, isEmptySync, notEmptySync } = require("v_is_empty_value");
+    const { isEmpty, isNotEmpty } = require("v_is_empty_value");
 
 or you can import...
 
     import v_is_empty_value from 'v_is_empty_value';
-    const { isEmpty, notEmpty, isEmptySync, notEmptySync } = v_is_empty_value;
+    const { isEmpty, isNotEmpty } = v_is_empty_value;
 
 ### ☑ Things it confirms Empty
 
     // Empty
-    await isEmpty()  //-> TRUE
-    isEmptySync()  //-> TRUE
-
-    await notEmpty()  //-> FALSE
-    notEmptySync()  //-> FALSE
+    isEmpty()  //-> TRUE
+    isNotEmpty()  //-> FALSE
 
     // Empty String
-    await isEmpty("")  //-> TRUE
-    isEmptySync("")  //-> TRUE
-
-    await notEmpty("")  //-> FALSE
-    notEmptySync("")  //-> FALSE
+    isEmpty("")  //-> TRUE
+    isNotEmpty("")  //-> FALSE
 
     // Null
-    await isEmpty(null)  //-> TRUE
-    isEmptySync(null)  //-> TRUE
-
-    await notEmpty(null)  //-> FALSE
-    notEmptySync(null)  //-> FALSE
+    isEmpty(null)  //-> TRUE
+    isNotEmpty(null)  //-> FALSE
 
     // Undefined
-    await isEmpty(undefined)  //-> TRUE
-    isEmptySync(undefined)  //-> TRUE
-
-    await notEmpty(undefined)  //-> FALSE
-    notEmptySync(undefined)  //-> FALSE
+    isEmpty(undefined)  //-> TRUE
+    isNotEmpty(undefined)  //-> FALSE
 
     // NaN
-    await isEmpty(NaN)  //-> TRUE
-    isEmptySync(NaN)  //-> TRUE
-
-    await notEmpty(NaN)  //-> FALSE
-    notEmptySync(NaN)  //-> FALSE
+    isEmpty(NaN)  //-> TRUE
+    isNotEmpty(NaN)  //-> FALSE
 
     // Object
-    await isEmpty({})  //-> TRUE
-    isEmptySync({})  //-> TRUE
-
-    await notEmpty({})  //-> FALSE
-    notEmptySync({})  //-> FALSE
+    isEmpty({})  //-> TRUE
+    isNotEmpty({})  //-> FALSE
 
     // Array
-    await isEmpty([])  //-> TRUE
-    isEmptySync([])  //-> TRUE
-
-    await notEmpty([])  //-> FALSE
-    notEmptySync([])  //-> FALSE
+    isEmpty([])  //-> TRUE
+    isNotEmpty([])  //-> FALSE
 
 ### ☑ Few things it confirms NOT Empty
 
-    await isEmpty("demo_password_123456")  //-> FALSE
-    await notEmpty("demo_password_123456")  //-> TRUE
+     isEmpty("demo_password_123456")  //-> FALSE
+     isNotEmpty("demo_password_123456")  //-> TRUE
 
-    await isEmpty(new Date())  //-> FALSE
-    await notEmpty(new Date())  //-> TRUE
+     isEmpty(new Date())  //-> FALSE
+     isNotEmpty(new Date())  //-> TRUE
 
-    await isEmpty(new Error())  //-> FALSE
-    await notEmpty(new Error())  //-> TRUE
+     isEmpty(new Error())  //-> FALSE
+     isNotEmpty(new Error())  //-> TRUE
 
-    await isEmpty(new Promise((resolve, reject) => resolve(true)))  //-> FALSE
-    await notEmpty(new Promise((resolve, reject) => resolve(true)))  //-> TRUE
+     isEmpty(new Promise((resolve, reject) => resolve(true)))  //-> FALSE
+     isNotEmpty(new Promise((resolve, reject) => resolve(true)))  //-> TRUE
 
 ## 🚀 Benchmarking
 

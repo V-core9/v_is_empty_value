@@ -1,6 +1,8 @@
-import { isEmpty, notEmpty } from '../dist/v_is_empty_value.es.js'
+import { isEmpty, isNotEmpty } from '../dist/v_is_empty_value.es.js'
 
-(async () => {
+const importMjs = async () => {
   console.log(isEmpty('YEA') === false)
-  console.log(notEmpty('YEA') === true)
-})()
+  console.log(isNotEmpty('YEA') === true)
+}
+
+importMjs()

@@ -1,7 +1,7 @@
 //? Listing of test scenarios
 //* input >> Value that will get passed into the function
 //* expected >> Expected output of the function [true/false]
-//! isEmpty(val) == expected || notEmpty(val) == !expected
+//! isEmpty(val) == expected || isNotEmpty(val) == !expected
 
 module.exports = [
   //! EMPTY VALUES [undefined/null/''/NaN]

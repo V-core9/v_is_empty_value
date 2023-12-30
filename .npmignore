@@ -9,10 +9,11 @@ __tests__
 
 package-lock.json
 jest.config.js
+jest.config.mjs
+rollup.config.json
 
 coverage.png
 coverage
-
 
 .tryouts
 .github

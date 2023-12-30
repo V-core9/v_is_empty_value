@@ -1,0 +1,14 @@
+{
+  "name": "v_is_empty_value_example",
+  "homepage": "https://v-core9.github.io/",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "v_is_empty_value": "file:../.."
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "sh -c \"node ./demo.js \""
+  }
+}

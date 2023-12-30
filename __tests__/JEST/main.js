@@ -1,4 +1,4 @@
-const { isEmpty, notEmpty } = require('../../dist/v_is_empty_value.cjs')
+const { isEmpty, isNotEmpty } = require('../../dist/v_is_empty_value.cjs')
 const testItems = require('../data/test_items')
 
 testItems.forEach((item) => {
@@ -6,7 +6,7 @@ testItems.forEach((item) => {
     expect(isEmpty(item.input)).toBe(item.expect)
   })
 
-  test(String(item.input) + ' :: notEmpty >> ' + !item.expect, () => {
-    expect(notEmpty(item.input)).toBe(!item.expect)
+  test(String(item.input) + ' :: isNotEmpty >> ' + !item.expect, () => {
+    expect(isNotEmpty(item.input)).toBe(!item.expect)
   })
 })
