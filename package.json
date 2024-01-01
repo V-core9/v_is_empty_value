@@ -23,7 +23,6 @@
     "empty",
     "checkEmpty",
     "testEmptyValue",
-    "async/await",
     "isEmpty",
     "isNotEmpty",
     "v-core9"
