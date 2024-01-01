@@ -1,45 +1,40 @@
 /**
- * Array of instances.
- * @type {Array<string>}
+ * Checks if a value is empty.
+ * @module v_is_empty_value
  */
-const instances = ['Date', 'Promise', 'Error', 'Boolean', 'Number']
-
-/**
- * Checks if a value is an instance of a specific class.
- * @param {string} iName - The name of the class to check against.
- * @returns {boolean} - Returns true if the value is an instance of the specified class, false otherwise.
- */
-const isInstance = (iName = null) => instances.indexOf(iName) !== -1
+import is_empty from './is_empty'
+import is_empty_nested from './is_empty.nested'
 
 /**
  * Checks if a value is empty.
- * @param {*} val - The value to check.
- * @returns {boolean} - Returns true if the value is empty, false otherwise.
- */
-export const is_empty = (value) => {
-  if (value === undefined) return true
-
-  if (isInstance(value?.constructor?.name)) return false
-
-  if (typeof value === 'object' && value !== null) {
-    const oKeys = Object.keys(value)
-    return oKeys.length === 0
-  }
-
-  return !value
-}
-
-/**
- * Checks if a value is empty.
- * @param {*} val - The value to check.
- * @returns {boolean} - Returns true if the value is empty, false otherwise.
+ * @function isEmpty
+ * @param {*} v - The value to check.
+ * @returns {boolean} - Returns `true` if the value is empty, `false` otherwise.
  */
 export const isEmpty = (v) => is_empty(v)
 
 /**
  * Checks if a value is not empty.
- * @param {*} val - The value to check.
- * @returns {boolean} - Returns true if the value is not empty, false otherwise.
+ * @function isNotEmpty
+ * @param {*} v - The value to check.
+ * @returns {boolean} - Returns `true` if the value is not empty, `false` otherwise.
  */
 export const isNotEmpty = (v) => !is_empty(v)
 
+/**
+ * Checks if a nested value is empty.
+ * @function isEmptyNested
+ * @param {*} v - The nested value to check.
+ * @returns {boolean} - Returns `true` if the nested value is empty, `false` otherwise.
+ */
+export const isEmptyNested = (v) => is_empty_nested(v)
+
+/**
+ * Checks if a nested value is not empty.
+ * @function isNotEmptyNested
+ * @param {*} v - The nested value to check.
+ * @returns {boolean} - Returns `true` if the nested value is not empty, `false` otherwise.
+ */
+export const isNotEmptyNested = (v) => !is_empty_nested(v)
+
+export { is_empty, is_empty_nested }

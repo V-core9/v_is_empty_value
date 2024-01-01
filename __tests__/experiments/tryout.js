@@ -1,4 +1,8 @@
-;[
+const objDate = new Date()
+const objError = new Error('123')
+const objTypeError = new TypeError('123')
+
+const objList = [
   undefined,
   null,
   NaN,
@@ -32,10 +36,15 @@
   },
   new Promise((resolve, reject) => {
     resolve('123')
-  })
-].map((i) => {
+  }),
+  objDate,
+  objError,
+  { err: objTypeError.name, msg: objTypeError.message }
+]
+
+objList.map((i) => {
   try {
-    console.log(typeof i, Object.keys(i))
+    console.log(typeof i, i?.constructor?.name, Object.keys(i))
   } catch (error) {
     console.log(typeof i, error.message)
   }

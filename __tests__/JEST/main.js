@@ -1,12 +1,11 @@
 const { isEmpty, isNotEmpty } = require('../../dist/v_is_empty_value.cjs')
-const testItems = require('../data/test_items')
+const testItems = require('../data/')
 
 testItems.forEach((item) => {
-  test(String(item.input) + ' :: isEmpty >> ' + item.expect, () => {
-    expect(isEmpty(item.input)).toBe(item.expect)
-  })
+  if (typeof item.expect === 'undefined') return true
 
-  test(String(item.input) + ' :: isNotEmpty >> ' + !item.expect, () => {
-    expect(isNotEmpty(item.input)).toBe(!item.expect)
+  test(`🆔 ${item.uid} | ${String(item.input)} :: [isEmpty|isNotEmpty] >> ${item.expect}`, async () => {
+    expect(await isEmpty(item.input)).toBe(item.expect)
+    expect(await isNotEmpty(item.input)).toBe(!item.expect)
   })
 })
