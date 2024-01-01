@@ -6,6 +6,11 @@ import strip from '@rollup/plugin-strip'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
+console.log('isProduction', isProduction)
+
+const banner = `//! 📚 Package: ${name} \n//! 👨‍💻 Author: V-core9`
+const footer = `//! - - - - -<[:-v-:]>- - - - - `
+
 const pthRes = (pth) => path.resolve(__dirname, pth)
 
 const name = 'v_is_empty_value'
@@ -13,11 +18,6 @@ const outDirName = 'dist'
 const formats = ['iife', 'cjs', 'es']
 
 const distPath = (format) => `./${outDirName}/${name}.${format}.js`
-
-const banner = `//! 📚 Package: ${name} \n//! 👨‍💻 Author: V-core9`
-const footer = `//! - - - - -<[:-v-:]>- - - - - `
-
-console.log('isProduction', isProduction)
 
 const buildConfig = {
   input: pthRes(`./src/index.js`),
