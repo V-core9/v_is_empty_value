@@ -11,7 +11,7 @@
     "test:watch": "jest --runInBand --watch",
     "build": "rollup -c ./rollup.config.js --bundleConfigAsCjs",
     "build:prod": "rollup -c ./rollup.config.js --bundleConfigAsCjs --environment NODE_ENV:production",
-    "prepack": "npm run lint && export:types && npm run build:prod && npm run test",
+    "prepack": "npm run lint && npm run export:types && npm run build:prod && npm run test",
     "lint": "eslint src"
   },
   "repository": {

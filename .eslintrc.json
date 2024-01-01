@@ -16,7 +16,8 @@
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "never"],
-    "quotes": ["error", "double"],
+    "eol-last": ["warn"],
+    "quotes": ["error", "single"],
     "avoidEscape": ["off", 2],
     "allowTemplateLiterals": ["off", 2]
   }
