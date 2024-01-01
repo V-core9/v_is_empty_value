@@ -85,11 +85,24 @@ or you can import...
      isEmpty(new Promise((resolve, reject) => resolve(true)))  //-> FALSE
      isNotEmpty(new Promise((resolve, reject) => resolve(true)))  //-> TRUE
 
+---
+
 ## 🚀 Benchmarking
 
-Performance depends on whether you're using asynchronous or synchronous version. Sync versions tend to run slower.
-Currently asynchronous version achieves up to 20k checks per millisecond, while sync version does up to 8k checks per ms.
-> NOTE: This version improves only performance of the code and cuts down on execution time, thus resulting in such performance uplift without changing/breaking any test cases.
+Current performance:
+
+> `isEmpty(v)`  
+> ~ **40,000** ops/ms [ **40** mil. ops/sec ]  
+
+> `isNotEmpty(v)`  
+> ~ **28,000** ops/ms [ **28** mil. ops/sec ]  
+
+> `isEmptyNested(v)`  
+> ~ **29,000** ops/ms [ **29** mil. ops/sec ]  
+
+> `isNotEmptyNested(v)`  
+> ~ **29,000** ops/ms [ **29** mil. ops/sec ]  
+---
 
 ## ✅ Test Results and Coverage with Jest
 
