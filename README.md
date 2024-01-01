@@ -93,7 +93,7 @@ Currently asynchronous version achieves up to 20k checks per millisecond, while 
 
 ## ✅ Test Results and Coverage with Jest
 
-![v_is_empty_value Node Module Test and Coverage with Jest](coverage.png)
+![v_is_empty_value Node Module Test and Coverage with Jest](./!~Docs~!/coverage.png)
 
 📑 Related links :
 
