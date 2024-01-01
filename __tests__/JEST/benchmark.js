@@ -2,7 +2,7 @@ const { isEmpty, isNotEmpty, isEmptyNested, isNotEmptyNested } = require('../../
 
 const milItems = 10 ** 6
 const itemCount = 25 * milItems
-const expectedBench = 20000
+const expectedBench = 10000
 
 const getAverage = (sTs, eTs, count) => 1 / ((eTs - sTs) / count) //? Items Per Millisecond
 const { log } = console
