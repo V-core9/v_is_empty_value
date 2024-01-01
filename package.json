@@ -1,6 +1,6 @@
 {
   "name": "v_is_empty_value",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Simple checker functions for empty values. Can check if a value is empty or not. [ isEmpty(val) / isNotEmpty(val) ]",
   "main": "./dist/v_is_empty_value.cjs.js",
   "module": "./dist/v_is_empty_value.es.js",
@@ -11,7 +11,7 @@
     "test:watch": "jest --runInBand --watch",
     "build": "rollup -c ./rollup.config.js --bundleConfigAsCjs",
     "build:prod": "rollup -c ./rollup.config.js --bundleConfigAsCjs --environment NODE_ENV:production",
-    "prepack": "npm run build:prod && npm run test"
+    "prepack": "nr export:types && npm run build:prod && npm run test"
   },
   "repository": {
     "type": "git",

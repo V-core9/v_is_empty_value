@@ -8,16 +8,38 @@ Simple checker for Empty/NotEmpty values. Checking Numbers, Null, NaN, Strings, 
 
 ### 🔩 Install using command &  save for later
 
+```sh
     npm install v_is_empty_value --save
+```
 
 ### 🪁 How to use
 
-    const { isEmpty, isNotEmpty } = require("v_is_empty_value");
+```js
+    const { isEmpty, isNotEmpty, isEmptyNested, isNotEmptyNested } = require("v_is_empty_value")
+```
 
 or you can import...
 
-    import v_is_empty_value from 'v_is_empty_value';
-    const { isEmpty, isNotEmpty } = v_is_empty_value;
+```js
+    import v_is_empty_value from 'v_is_empty_value'
+    const { isEmpty, isNotEmpty, isEmptyNested, isNotEmptyNested } = v_is_empty_value
+```
+
+### List
+
+```js
+    // Checks if a value is empty. Returns true if the value is empty, else false.
+    isEmpty(v) 
+
+    // Checks if a value is not empty. Returns true if the value is not empty, else false.
+    isNotEmpty(v)
+
+    // Checks if a nested value is empty. Returns true if the nested value is empty, else false.
+    isEmptyNested(v)
+
+    // Checks if a nested value is not empty. Returns true if the nested value is not empty, else false.
+    isNotEmptyNested(v)
+```
 
 ### ☑ Things it confirms Empty
 
