@@ -38,3 +38,4 @@ export const isEmptyNested = (v) => is_empty_nested(v)
 export const isNotEmptyNested = (v) => !is_empty_nested(v)
 
 export { is_empty, is_empty_nested }
+

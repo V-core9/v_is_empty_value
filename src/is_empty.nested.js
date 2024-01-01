@@ -26,7 +26,7 @@ const is_empty_nested = (value) => {
     let i = 0
     while (i < keys.length) {
       const key = keys[i]
-      if (value.hasOwnProperty(key) && !is_empty_nested(value[key])) return false
+      if (Object.prototype.hasOwnProperty.call(value, key) && !is_empty_nested(value[key])) return false
       i++
     }
     return true
@@ -36,3 +36,4 @@ const is_empty_nested = (value) => {
 }
 
 export default is_empty_nested
+
