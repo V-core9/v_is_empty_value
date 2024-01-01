@@ -12,8 +12,10 @@ const is_empty_nested = (value) => {
 
   if (Array.isArray(value)) {
     if (value.length === 0) return true
-    for (const element of value) {
-      if (!is_empty_nested(element)) return false
+    let i = 0
+    while (i < value.length) {
+      if (!is_empty_nested(value[i])) return false
+      i++
     }
     return true
   }
@@ -21,8 +23,11 @@ const is_empty_nested = (value) => {
   if (typeof value === 'object' && value !== null) {
     const keys = Object.keys(value)
     if (keys.length === 0) return true
-    for (const key in value) {
-      if (!is_empty_nested(value[key])) return false
+    let i = 0
+    while (i < keys.length) {
+      const key = keys[i]
+      if (value.hasOwnProperty(key) && !is_empty_nested(value[key])) return false
+      i++
     }
     return true
   }

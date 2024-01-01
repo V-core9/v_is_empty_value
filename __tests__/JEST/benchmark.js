@@ -1,9 +1,11 @@
 const { isEmpty, isNotEmpty, isEmptyNested, isNotEmptyNested } = require('../../dist/v_is_empty_value.cjs')
 
-const itemCount = 1000000
+const milItems = 10 ** 6
+const itemCount = 25 * milItems
 const expectedBench = 20000
 
 const getAverage = (sTs, eTs, count) => 1 / ((eTs - sTs) / count) //? Items Per Millisecond
+const { log } = console
 
 test(`Benchmarking`, () => {
   const runTest = (isName, testFn) => {
@@ -11,9 +13,16 @@ test(`Benchmarking`, () => {
     for (let i = 0; i < itemCount; i++) {
       testFn(i)
     }
-    const average = getAverage(tsStart, Date.now(), itemCount)
-    console.log(`${isName} average: ${average}`)
-    expect(average).toBeGreaterThan(expectedBench)
+
+    const avg = {}
+    avg.raw = getAverage(tsStart, Date.now(), itemCount)
+    avg.count = Math.trunc(avg.raw / 1000)
+    avg.time = Math.trunc(Date.now() - tsStart)
+    avg.done = Math.trunc(itemCount / milItems)
+
+    log(`${isName} AVG: ${avg.count}k/ms | ${avg.count}M/s | ${avg.time}ms  [T: ${avg.done}mil.]`)
+
+    expect(avg.raw).toBeGreaterThan(expectedBench)
   }
 
   runTest('isEmpty', isEmpty)
