@@ -34,3 +34,4 @@ source/**
 tsconfig.json
 README.md
 LICENCE
+.eslintrc.json
