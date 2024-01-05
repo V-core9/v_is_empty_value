@@ -6,33 +6,35 @@ import strip from '@rollup/plugin-strip'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-console.log('isProduction', isProduction)
+if (isProduction) console.log('✨ Production BUILD')
+
+const name = 'v_is_empty_value'
+const formats = [
+  'amd', // Asynchronous Module Definition, used with module loaders like RequireJS
+  'cjs', // CommonJS, suitable for Node and Browserify/Webpack
+  'es', // Keep the bundle as an ES module file, suitable for other bundlers and inclusion as a <script type=module> tag in modern browsers
+  'iife', // A self-executing function, suitable for inclusion as a <script> tag. (If you want to create a bundle for your application, you probably want to use this, because it leads to smaller file sizes.)
+  'umd', // Universal Module Definition, works as amd, cjs and iife all in one
+  'system' // Native format of the SystemJS loader
+]
 
 const banner = `//! 📚 Package: ${name} \n//! 👨‍💻 Author: V-core9`
 const footer = `//! - - - - -<[:-v-:]>- - - - - `
 
-const pthRes = (pth) => path.resolve(__dirname, pth)
-
-const name = 'v_is_empty_value'
-const outDirName = 'dist'
-const formats = ['iife', 'cjs', 'es']
-
-const distPath = (format) => `./${outDirName}/${name}.${format}.js`
-
 const buildConfig = {
-  input: pthRes(`./src/index.js`),
+  input: path.resolve(__dirname, `./src/index.js`),
   treeshake: 'smallest',
   output: [
     // 3 Versions output
     ...formats.map((format) => ({
-      file: distPath(format),
+      file: `./dist/${name}.${format}.js`,
       name,
-      format: format,
+      banner,
+      footer,
+      format,
       sourcemap: true,
       minifyInternalExports: true,
       sanitizeFileName: true,
-      banner,
-      footer,
       generatedCode: {
         arrowFunctions: true,
         constBindings: true,
@@ -41,8 +43,8 @@ const buildConfig = {
         parameterDestructuring: true,
         reservedNamesAsProps: true,
         stickyRegExp: true,
-        templateString: true,
-      },
+        templateString: true
+      }
       // experimentalMinChunkSize: 1000
     }))
   ],

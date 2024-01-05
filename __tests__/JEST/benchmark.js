@@ -7,7 +7,7 @@ const expectedBench = 10000
 const getAverage = (sTs, eTs, count) => 1 / ((eTs - sTs) / count) //? Items Per Millisecond
 const { log } = console
 
-test(`Benchmarking`, () => {
+test('Benchmarking', () => {
   const runTest = (isName, testFn) => {
     const tsStart = Date.now()
     for (let i = 0; i < itemCount; i++) {

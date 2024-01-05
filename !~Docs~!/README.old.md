@@ -104,6 +104,10 @@ Current performance:
 > ~ **29,000** ops/ms [ **29** mil. ops/sec ]  
 ---
 
+## ✅ Test Results and Coverage with Jest
+
+![v_is_empty_value Node Module Test and Coverage with Jest](./!~Docs~!/coverage.png)
+
 📑 Related links :
 
 * [v_to_md5](https://www.npmjs.com/package/v_to_md5) ⏭ MD5 hash generator

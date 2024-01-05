@@ -2,10 +2,12 @@ node_modules
 __tests__
 
 .git
+.git/**
 .gitignore
 .editorconfig
 .jshintrc
 .github
+.github/**
 
 package-lock.json
 jest.config.js
@@ -17,10 +19,12 @@ coverage.png
 coverage
 
 .tryouts
-.github
 
 _OLD_
 _OLD_/**
+
+!~DOCS~!
+!~DOCS~!/**
 
 src
 src/**
