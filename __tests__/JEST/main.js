@@ -1,4 +1,4 @@
-const { isEmpty, isNotEmpty } = require('../../dist/v_is_empty_value.cjs')
+const { isEmpty, isNotEmpty } = require('../..')
 const testItems = require('../data/')
 
 testItems.forEach((item) => {
@@ -9,4 +9,3 @@ testItems.forEach((item) => {
     expect(isNotEmpty(item.input)).toBe(!item.expect)
   })
 })
-

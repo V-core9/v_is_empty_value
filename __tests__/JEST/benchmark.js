@@ -1,4 +1,4 @@
-const { isEmpty, isNotEmpty, isEmptyNested, isNotEmptyNested } = require('../../dist/v_is_empty_value.cjs')
+const { isEmpty, isNotEmpty, isEmptyNested, isNotEmptyNested } = require('../..')
 
 const milItems = 10 ** 6
 const itemCount = 25 * milItems

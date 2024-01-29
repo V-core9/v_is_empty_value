@@ -27,7 +27,7 @@ const buildConfig = {
   output: [
     // 3 Versions output
     ...formats.map((format) => ({
-      file: `./dist/${name}.${format}.js`,
+      file: `./dist/${format}.js`,
       name,
       banner,
       footer,
