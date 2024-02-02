@@ -1,14 +1,14 @@
-import { isInstance } from './constants'
+import { isKnownInstance, notNullObject } from './constants'
 
 /**
  * Checks if a nested value is empty.
  * @param {*} value - The value to check.
  * @returns {boolean} - Returns true if the value is empty, otherwise false.
  */
-const is_empty_nested = (value) => {
+export default function is_empty_nested(value) {
   if (value === undefined) return true
 
-  if (isInstance(value?.constructor?.name)) return false
+  if (isKnownInstance(value?.constructor?.name)) return false
 
   if (Array.isArray(value)) {
     if (value.length === 0) return true
@@ -20,7 +20,7 @@ const is_empty_nested = (value) => {
     return true
   }
 
-  if (typeof value === 'object' && value !== null) {
+  if (notNullObject(value)) {
     const keys = Object.keys(value)
     if (keys.length === 0) return true
     let i = 0
@@ -34,6 +34,4 @@ const is_empty_nested = (value) => {
 
   return !value
 }
-
-export default is_empty_nested
 
