@@ -1,4 +1,4 @@
-import { isInstance } from './constants'
+import { isNonEmptyType } from './config'
 
 /**
  * Checks if a nested value is empty.
@@ -6,7 +6,7 @@ import { isInstance } from './constants'
  * @returns {boolean} - Returns true if the value is empty, otherwise false.
  */
 const is_empty_nested = (value) => {
-  if (isInstance(value?.constructor?.name)) return false
+  if (isNonEmptyType(value?.constructor?.name)) return false
 
   if (Array.isArray(value)) return value.length > 0 ? value.every((item) => is_empty_nested(item)) : true
 
@@ -21,4 +21,3 @@ const is_empty_nested = (value) => {
 }
 
 export default is_empty_nested
-

@@ -10,12 +10,12 @@ if (isProduction) console.log('✨ Production BUILD')
 
 const name = 'v_is_empty_value'
 const formats = [
-  'amd', // Asynchronous Module Definition, used with module loaders like RequireJS
-  'cjs', // CommonJS, suitable for Node and Browserify/Webpack
-  'es', // Keep the bundle as an ES module file, suitable for other bundlers and inclusion as a <script type=module> tag in modern browsers
-  'iife', // A self-executing function, suitable for inclusion as a <script> tag. (If you want to create a bundle for your application, you probably want to use this, because it leads to smaller file sizes.)
-  'umd', // Universal Module Definition, works as amd, cjs and iife all in one
-  'system' // Native format of the SystemJS loader
+  'amd',    // Asynchronous Module Definition, used with module loaders like RequireJS
+  'cjs',    // CommonJS, suitable for Node and Browserify/Webpack
+  'es',     // Keep the bundle as an ES module file, suitable for other bundlers and inclusion as a <script type=module> tag in modern browsers
+  'iife',   // A self-executing function, suitable for inclusion as a <script> tag. (If you want to create a bundle for your application, you probably want to use this, because it leads to smaller file sizes.)
+  'umd',    // Universal Module Definition, works as amd, cjs and iife all in one
+  'system'  // Native format of the SystemJS loader
 ]
 
 const banner = `//! 📚 Package: ${name} \n//! 👨‍💻 Author: V-core9`
@@ -23,9 +23,13 @@ const footer = `//! - - - - -<[:-v-:]>- - - - - `
 
 const buildConfig = {
   input: path.resolve(__dirname, `./src/index.js`),
-  treeshake: 'smallest',
+  treeshake: {
+    moduleSideEffects: false,
+    propertyReadSideEffects: false,
+    tryCatchDeoptimization: false
+  },
   output: [
-    // 3 Versions output
+    // 6 Formats output
     ...formats.map((format) => ({
       file: `./dist/${format}.js`,
       name,
@@ -35,6 +39,7 @@ const buildConfig = {
       sourcemap: true,
       minifyInternalExports: true,
       sanitizeFileName: true,
+      exports: format === 'cjs' ? 'named' : 'auto',
       generatedCode: {
         arrowFunctions: true,
         constBindings: true,
@@ -45,7 +50,6 @@ const buildConfig = {
         stickyRegExp: true,
         templateString: true
       }
-      // experimentalMinChunkSize: 1000
     }))
   ],
   plugins: [
