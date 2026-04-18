@@ -18,6 +18,7 @@ node benchmark/index.js
 ## Test Cases
 
 The benchmark compares 21 different value types:
+
 - Primitives: null, undefined, empty string, "hello", 0, NaN
 - Arrays: empty [], [1]
 - Objects: empty {}, { a: 1 }
