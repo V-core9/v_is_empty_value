@@ -257,7 +257,50 @@ looseChecker.isEmpty(BigInt(0)) // true
 
 ---
 
-### 🔍 Special Types Reference
+### � Lodash Drop-in Replacement
+
+While `v_is_empty_value` defaults to **semantically correct** behavior, you can configure it to match Lodash's `isEmpty()` for drop-in compatibility:
+
+```js
+import { isEmpty, config } from 'v_is_empty_value'
+
+// Configure to match Lodash behavior
+config.set({
+  treatNaNAsEmpty: true,           // NaN is empty (same default)
+  treatFunctionAsEmpty: false,     // Functions are NOT empty (Lodash style)
+  treatSymbolAsEmpty: false,       // Symbols are NOT empty (Lodash style)
+  treatZeroBigIntAsEmpty: false,   // 0n is NOT empty (same default)
+  nonEmptyTypes: []                // Disable Date/Promise/Error detection
+})
+
+// Now behaves like Lodash:
+isEmpty(() => {})      // false (Lodash: false)
+isEmpty(Symbol())      // false (Lodash: false)
+isEmpty(new Date())    // true  (Lodash: true - just checks Object.keys())
+isEmpty(new Error())   // true  (Lodash: true)
+isEmpty(0)             // false (Lodash: true ⚠️ STILL DIFFERENT!)
+isEmpty(false)         // false (Lodash: true ⚠️ STILL DIFFERENT!)
+```
+
+#### Why We Differ From Lodash
+
+**We intentionally differ from Lodash** on these cases because we believe they are semantically incorrect:
+
+| Value | Lodash | `v_is_empty_value` | Rationale |
+|-------|--------|-------------------|-----------|
+| `0` | **empty** | **non-empty** | `0` is a valid numeric value, not "nothing" |
+| `false` | **empty** | **non-empty** | `false` is a valid boolean state, not "no data" |
+| `new Date()` | **empty** | **non-empty** | A Date instance represents a timestamp (has value) |
+| `new Error()` | **empty** | **non-empty** | An Error represents an error condition (has value) |
+| `new Promise()` | **empty** | **non-empty** | A Promise represents async state (has internal slots) |
+
+Lodash uses `Object.keys(value).length` for objects, which returns `0` for class instances because their data is stored in internal slots, not enumerable properties. We detect these types via `constructor.name` and treat them as non-empty because they **represent values** even without enumerable properties.
+
+**Note:** You cannot make `0` and `false` return `true` with configuration - these are hardcoded as non-empty because treating them as empty is considered a design flaw.
+
+---
+
+### �🔍 Special Types Reference
 
 | Type                      | Empty Behavior         | Configurable             |
 | :------------------------ | :--------------------- | :----------------------- |
