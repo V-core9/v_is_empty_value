@@ -5,7 +5,7 @@ Performance comparison between `v_is_empty_value` and `lodash.isEmpty`.
 ## Setup
 
 ```bash
-npm install --save-dev lodash-es
+npm install --save-dev lodash
 npm run build
 ```
 

@@ -1,43 +1,30 @@
-import { isNonEmptyType, getConfig } from './config.js'
+import { isNonEmptyType, currentConfig } from './config.js'
 
 /**
  * Checks if a primitive value is empty.
+ * Uses live config values for zero-overhead access.
  * @param {*} value - The value to check.
- * @param {object} config - Configuration options.
  * @returns {boolean} - Returns true if the value is empty.
  */
-const isPrimitiveEmpty = (value, config) => {
-  // Handle undefined
-  if (value === undefined) return true
+const isPrimitiveEmpty = (value) => {
+  if (value === undefined || value === null) return true
 
-  // Handle null
-  if (value === null) return true
-
-  // Handle NaN - configurable behavior
-  if (Number.isNaN(value)) return config.treatNaNAsEmpty !== false
-
-  // Handle functions - configurable behavior
-  if (typeof value === 'function') return config.treatFunctionAsEmpty !== false
-
-  // Handle symbols - configurable behavior
-  if (typeof value === 'symbol') return config.treatSymbolAsEmpty !== false
-
-  // Handle BigInt - configurable behavior for 0n
-  if (typeof value === 'bigint') {
-    return config.treatZeroBigIntAsEmpty ? value === 0n : false
+  switch (typeof value) {
+    case 'boolean':
+      return false
+    case 'string':
+      return value === ''
+    case 'number':
+      return Number.isNaN(value) ? currentConfig.treatNaNAsEmpty : false
+    case 'function':
+      return currentConfig.treatFunctionAsEmpty
+    case 'symbol':
+      return currentConfig.treatSymbolAsEmpty
+    case 'bigint':
+      return currentConfig.treatZeroBigIntAsEmpty ? value === 0n : false
+    default:
+      return !value
   }
-
-  // Handle strings - empty string is empty
-  if (typeof value === 'string') return value === ''
-
-  // Handle numbers - 0 is considered non-empty
-  if (typeof value === 'number') return false
-
-  // Handle booleans - both true and false are non-empty
-  if (typeof value === 'boolean') return false
-
-  // Default: use truthiness check
-  return !value
 }
 
 /**
@@ -48,11 +35,9 @@ const isPrimitiveEmpty = (value, config) => {
  * @returns {boolean} - Returns true if the value is empty, otherwise false.
  */
 const is_empty_nested = (value) => {
-  const config = getConfig()
-
   // Quick check for primitives
   if (typeof value !== 'object' || value === null) {
-    return isPrimitiveEmpty(value, config)
+    return isPrimitiveEmpty(value)
   }
 
   // Check if it's a known non-empty instance type (Date, Promise, Error, etc.)
@@ -63,7 +48,7 @@ const is_empty_nested = (value) => {
 
   // Stack for iterative traversal: [{ value, iterator, depth }]
   const stack = []
-  const seen = config.checkCircular !== false ? new WeakSet() : null
+  const seen = currentConfig.checkCircular !== false ? new WeakSet() : null
 
   // Push root object to stack
   stack.push({ value, depth: 0, processed: false })
@@ -83,7 +68,7 @@ const is_empty_nested = (value) => {
     const { value: currentValue, depth } = frame
 
     // Check max depth if configured
-    if (config.maxNestedDepth > 0 && depth > config.maxNestedDepth) {
+    if (currentConfig.maxNestedDepth > 0 && depth > currentConfig.maxNestedDepth) {
       return false // Treat as non-empty when max depth exceeded
     }
 
@@ -141,7 +126,7 @@ const is_empty_nested = (value) => {
 
       // Quick primitive check
       if (typeof item !== 'object' || item === null) {
-        if (!isPrimitiveEmpty(item, config)) {
+        if (!isPrimitiveEmpty(item)) {
           return false // Found non-empty primitive
         }
         continue
@@ -166,4 +151,3 @@ const is_empty_nested = (value) => {
 }
 
 export default is_empty_nested
-

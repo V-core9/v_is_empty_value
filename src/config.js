@@ -56,21 +56,24 @@ const defaultConfig = {
   checkCircular: true
 }
 
-// Current configuration (mutable)
-let currentConfig = { ...defaultConfig }
+// Current configuration (mutable) - exported as live binding
+export let currentConfig = { ...defaultConfig }
+
+// Cache non-empty types as Set for O(1) lookup
+let nonEmptyTypesSet = new Set([
+  ...currentConfig.nonEmptyTypes,
+  ...currentConfig.typedArrayTypes
+])
 
 /**
  * Check if a value is an instance of a non-empty type
+ * Uses Set for O(1) lookup performance
  * @param {string} constructorName - The constructor name to check
  * @returns {boolean}
  */
 export const isNonEmptyType = (constructorName) => {
   if (!constructorName) return false
-  const allNonEmptyTypes = [
-    ...currentConfig.nonEmptyTypes,
-    ...currentConfig.typedArrayTypes
-  ]
-  return allNonEmptyTypes.indexOf(constructorName) !== -1
+  return nonEmptyTypesSet.has(constructorName)
 }
 
 /**
@@ -85,6 +88,11 @@ export const getConfig = () => ({ ...currentConfig })
  */
 export const setConfig = (newConfig) => {
   currentConfig = { ...currentConfig, ...newConfig }
+  // Rebuild Set when config changes
+  nonEmptyTypesSet = new Set([
+    ...currentConfig.nonEmptyTypes,
+    ...currentConfig.typedArrayTypes
+  ])
 }
 
 /**
@@ -92,6 +100,11 @@ export const setConfig = (newConfig) => {
  */
 export const resetConfig = () => {
   currentConfig = { ...defaultConfig }
+  // Rebuild Set when config is reset
+  nonEmptyTypesSet = new Set([
+    ...currentConfig.nonEmptyTypes,
+    ...currentConfig.typedArrayTypes
+  ])
 }
 
 /**
@@ -102,10 +115,15 @@ export const resetConfig = () => {
 export const createChecker = (customConfig = {}) => {
   const config = { ...currentConfig, ...customConfig }
 
+  // Cache as Set for O(1) lookup
+  const nonEmptyTypesSetLocal = new Set([
+    ...config.nonEmptyTypes,
+    ...config.typedArrayTypes
+  ])
+
   const isNonEmptyTypeFn = (constructorName) => {
     if (!constructorName) return false
-    const allNonEmptyTypes = [...config.nonEmptyTypes, ...config.typedArrayTypes]
-    return allNonEmptyTypes.indexOf(constructorName) !== -1
+    return nonEmptyTypesSetLocal.has(constructorName)
   }
 
   return {
