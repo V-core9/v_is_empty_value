@@ -377,16 +377,19 @@ This will basically run the functions mentioned for 25mil. times and will print 
 For maintainers - steps to publish a new version:
 
 1. **Version Bump**
+
    ```bash
    npm version minor  # or patch/major
    ```
 
 2. **Pre-publish Check** (runs lint, build, tests)
+
    ```bash
    npm run prepack
    ```
 
 3. **Git Commit & Tag**
+
    ```bash
    git add package.json
    git commit -m "chore: bump version to X.X.X"
@@ -395,6 +398,7 @@ For maintainers - steps to publish a new version:
    ```
 
 4. **NPM Publish**
+
    ```bash
    npm publish
    ```
@@ -404,6 +408,7 @@ For maintainers - steps to publish a new version:
    - Click **"Choose a tag"** and select `vX.X.X`
    - **Release title**: `vX.X.X - Brief description`
    - **Release notes**:
+
      ```markdown
      ## Changes
      - Feature/fix description
@@ -413,6 +418,7 @@ For maintainers - steps to publish a new version:
      ## Breaking Changes (if any)
      - Migration notes
      ```
+
    - Attach build artifacts from `dist/` folder (optional)
    - Click **"Publish release"**
 
