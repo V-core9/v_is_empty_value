@@ -287,7 +287,7 @@ isEmpty(false)         // false (Lodash: true ⚠️ STILL DIFFERENT!)
 **We intentionally differ from Lodash** on these cases because we believe they are semantically incorrect:
 
 | Value | Lodash | `v_is_empty_value` | Rationale |
-|-------|--------|-------------------|-----------|
+| ------- | -------- | ------------------- | ----------- |
 | `0` | **empty** | **non-empty** | `0` is a valid numeric value, not "nothing" |
 | `false` | **empty** | **non-empty** | `false` is a valid boolean state, not "no data" |
 | `new Date()` | **empty** | **non-empty** | A Date instance represents a timestamp (has value) |
