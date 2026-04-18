@@ -363,12 +363,23 @@ This will basically run the functions mentioned for 25mil. times and will print 
 - Windows 10 Pro 64-bit
 - Node.js v20.10.0
 
-### 📊 Current performance  
+### 📊 Current performance (vs lodash.isEmpty)
 
-- `isEmpty(v)` : ~ **40,000** ops/ms [ **40** mil. ops/sec ]
-- `isNotEmpty(v)` : ~ **32,000** ops/ms [ **32** mil. ops/sec ]
-- `isEmptyNested(v)` : ~ **30,000** ops/ms [ **30** mil. ops/sec ]
-- `isNotEmptyNested(v)` : ~ **31,000** ops/ms [ **31** mil. ops/sec ]
+| Metric | v_is_empty_value | lodash | Faster |
+|--------|-----------------|--------|--------|
+| **Throughput** | **23,978,672** ops/sec | 3,758,432 ops/sec | **6.4x** |
+| null | 0.89ms | 1.27ms | 1.4x |
+| empty string | 0.72ms | 1.88ms | 2.6x |
+| number 0 | 1.63ms | 6.75ms | 4.1x |
+| NaN | 1.86ms | 5.34ms | 2.9x |
+| empty Map | 5.98ms | 65.51ms | 11.0x |
+| Map with entries | 3.36ms | 63.26ms | 18.8x |
+| empty Set | 7.09ms | 73.90ms | 10.4x |
+| Uint8Array | 4.01ms | 79.65ms | 19.9x |
+| Promise | 4.08ms | 68.40ms | 16.7x |
+| **TOTAL** | **91.75ms** | **585.35ms** | **6.4x** |
+
+Run `npm run benchmark` to see full comparison.
 
 ---
 
