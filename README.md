@@ -372,6 +372,52 @@ This will basically run the functions mentioned for 25mil. times and will print 
 
 ---
 
+### 🚀 Release Process
+
+For maintainers - steps to publish a new version:
+
+1. **Version Bump**
+   ```bash
+   npm version minor  # or patch/major
+   ```
+
+2. **Pre-publish Check** (runs lint, build, tests)
+   ```bash
+   npm run prepack
+   ```
+
+3. **Git Commit & Tag**
+   ```bash
+   git add package.json
+   git commit -m "chore: bump version to X.X.X"
+   git tag vX.X.X
+   git push origin main --tags
+   ```
+
+4. **NPM Publish**
+   ```bash
+   npm publish
+   ```
+
+5. **GitHub Release** (Recommended)
+   - Go to GitHub repository → **Releases** → **"Draft a new release"**
+   - Click **"Choose a tag"** and select `vX.X.X`
+   - **Release title**: `vX.X.X - Brief description`
+   - **Release notes**:
+     ```markdown
+     ## Changes
+     - Feature/fix description
+     - Performance improvements
+     - Bug fixes
+
+     ## Breaking Changes (if any)
+     - Migration notes
+     ```
+   - Attach build artifacts from `dist/` folder (optional)
+   - Click **"Publish release"**
+
+---
+
 📑 Related links :
 
 - [v_to_md5](https://www.npmjs.com/package/v_to_md5) ⏭ MD5 hash generator
