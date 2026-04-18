@@ -10,20 +10,20 @@ const isPrimitiveEmpty = (value) => {
   if (value === undefined || value === null) return true
 
   switch (typeof value) {
-    case 'boolean':
-      return false
-    case 'string':
-      return value === ''
-    case 'number':
-      return Number.isNaN(value) ? currentConfig.treatNaNAsEmpty : false
-    case 'function':
-      return currentConfig.treatFunctionAsEmpty
-    case 'symbol':
-      return currentConfig.treatSymbolAsEmpty
-    case 'bigint':
-      return currentConfig.treatZeroBigIntAsEmpty ? value === 0n : false
-    default:
-      return !value
+  case 'boolean':
+    return false
+  case 'string':
+    return value === ''
+  case 'number':
+    return Number.isNaN(value) ? currentConfig.treatNaNAsEmpty : false
+  case 'function':
+    return currentConfig.treatFunctionAsEmpty
+  case 'symbol':
+    return currentConfig.treatSymbolAsEmpty
+  case 'bigint':
+    return currentConfig.treatZeroBigIntAsEmpty ? value === 0n : false
+  default:
+    return !value
   }
 }
 

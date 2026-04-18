@@ -1,6 +1,6 @@
 {
   "name": "v_is_empty_value",
-  "version": "2.1.10",
+  "version": "2.2.0",
   "description": "Simple checker functions for empty values. Can check if a value is empty or not. [ isEmpty(val) / isNotEmpty(val) ]",
   "main": "./dist/cjs.js",
   "module": "./dist/es.js",
