@@ -355,7 +355,7 @@ isEmptyNested(obj2) // prints "false" (has non-empty value)
 
 This will basically run the functions mentioned for 25mil. times and will print the time taken for each function to complete.
 
-### 📋 Test setup:
+### 📋 Test setup  
 
 - AMD Ryzen 7 2700X Eight-Core Processor 3.70 GHz
 - 16 GB 3000 MHz DDR4
@@ -363,7 +363,7 @@ This will basically run the functions mentioned for 25mil. times and will print 
 - Windows 10 Pro 64-bit
 - Node.js v20.10.0
 
-### 📊 Current performance:
+### 📊 Current performance  
 
 - `isEmpty(v)` : ~ **40,000** ops/ms [ **40** mil. ops/sec ]
 - `isNotEmpty(v)` : ~ **32,000** ops/ms [ **32** mil. ops/sec ]
