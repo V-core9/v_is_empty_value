@@ -115,10 +115,10 @@ export const createChecker = (customConfig = {}) => {
 }
 
 export default {
-  getConfig,
-  setConfig,
-  resetConfig,
+  get: getConfig,
+  set: setConfig,
+  reset: resetConfig,
   createChecker,
   isNonEmptyType,
-  defaultConfig
+  defaults: defaultConfig
 }

@@ -1,35 +1,12 @@
 import { isNonEmptyType, getConfig } from './config.js'
 
 /**
- * WeakSet to track visited objects for circular reference detection
- */
-const visited = new WeakSet()
-
-/**
- * Clear the visited set (for testing purposes)
- */
-export const clearVisited = () => {
-  visited._clear && visited._clear()
-}
-
-/**
- * Checks if a nested value is empty.
- * Handles circular references to prevent infinite loops.
- *
+ * Checks if a primitive value is empty.
  * @param {*} value - The value to check.
- * @param {number} depth - Current recursion depth.
- * @param {WeakSet} seen - Set of already visited objects (for circular ref detection).
- * @param {object} options - Optional configuration override.
- * @returns {boolean} - Returns true if the value is empty, otherwise false.
+ * @param {object} config - Configuration options.
+ * @returns {boolean} - Returns true if the value is empty.
  */
-const is_empty_nested = (value, depth = 0, seen = null, options = null) => {
-  const config = options || getConfig()
-
-  // Check max depth if configured
-  if (config.maxNestedDepth > 0 && depth > config.maxNestedDepth) {
-    return false // Treat as non-empty when max depth exceeded
-  }
-
+const isPrimitiveEmpty = (value, config) => {
   // Handle undefined
   if (value === undefined) return true
 
@@ -50,29 +27,6 @@ const is_empty_nested = (value, depth = 0, seen = null, options = null) => {
     return config.treatZeroBigIntAsEmpty ? value === 0n : false
   }
 
-  // Check if it's a known non-empty instance type (Date, Promise, Error, etc.)
-  if (isNonEmptyType(value?.constructor?.name)) return false
-
-  // Handle objects (for circular reference detection and nested checking)
-  if (typeof value === 'object') {
-    // Circular reference detection
-    if (config.checkCircular !== false) {
-      const currentSeen = seen || new WeakSet()
-
-      // If we've seen this object before, it's circular - treat as empty
-      // (since the nested values were already checked)
-      if (currentSeen.has(value)) return true
-
-      // Mark as visited
-      currentSeen.add(value)
-
-      // Use the same seen set for recursive calls
-      return checkObjectEmpty(value, depth, currentSeen, config)
-    }
-
-    return checkObjectEmpty(value, depth, seen, config)
-  }
-
   // Handle strings - empty string is empty
   if (typeof value === 'string') return value === ''
 
@@ -87,50 +41,128 @@ const is_empty_nested = (value, depth = 0, seen = null, options = null) => {
 }
 
 /**
- * Helper to check if an object/array/Map/Set is empty (with circular ref tracking)
+ * Checks if a nested value is empty using iterative stack-based traversal.
+ * Handles circular references to prevent infinite loops.
+ *
+ * @param {*} value - The value to check.
+ * @returns {boolean} - Returns true if the value is empty, otherwise false.
  */
-const checkObjectEmpty = (value, depth, seen, config) => {
-  // Handle arrays
-  if (Array.isArray(value)) {
-    if (value.length === 0) return true
-    for (let i = 0; i < value.length; i++) {
-      if (!is_empty_nested(value[i], depth + 1, seen, config)) return false
-    }
-    return true
+const is_empty_nested = (value) => {
+  const config = getConfig()
+
+  // Quick check for primitives
+  if (typeof value !== 'object' || value === null) {
+    return isPrimitiveEmpty(value, config)
   }
 
-  // Handle Maps
-  if (value instanceof Map) {
-    if (value.size === 0) return true
-    for (const [, v] of value) {
-      if (!is_empty_nested(v, depth + 1, seen, config)) return false
-    }
-    return true
-  }
-
-  // Handle Sets
-  if (value instanceof Set) {
-    if (value.size === 0) return true
-    for (const v of value) {
-      if (!is_empty_nested(v, depth + 1, seen, config)) return false
-    }
-    return true
-  }
+  // Check if it's a known non-empty instance type (Date, Promise, Error, etc.)
+  if (isNonEmptyType(value?.constructor?.name)) return false
 
   // Handle WeakMap and WeakSet - can't iterate, always non-empty
   if (value instanceof WeakMap || value instanceof WeakSet) return false
 
-  // Handle regular objects
-  const keys = Object.keys(value)
-  if (keys.length === 0) return true
+  // Stack for iterative traversal: [{ value, iterator, depth }]
+  const stack = []
+  const seen = config.checkCircular !== false ? new WeakSet() : null
 
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i]
-    if (Object.prototype.hasOwnProperty.call(value, key)) {
-      if (!is_empty_nested(value[key], depth + 1, seen, config)) return false
+  // Push root object to stack
+  stack.push({ value, depth: 0, processed: false })
+
+  while (stack.length > 0) {
+    const frame = stack[stack.length - 1]
+
+    // If already processed (all children checked), pop and continue
+    if (frame.processed) {
+      stack.pop()
+      if (seen && frame.value && typeof frame.value === 'object') {
+        seen.delete(frame.value)
+      }
+      continue
+    }
+
+    const { value: currentValue, depth } = frame
+
+    // Check max depth if configured
+    if (config.maxNestedDepth > 0 && depth > config.maxNestedDepth) {
+      return false // Treat as non-empty when max depth exceeded
+    }
+
+    // Mark as processed so we know when all children are done
+    frame.processed = true
+
+    // Handle circular references
+    if (seen && currentValue && typeof currentValue === 'object') {
+      if (seen.has(currentValue)) {
+        // Circular reference found - treat as empty (already checked)
+        continue
+      }
+      seen.add(currentValue)
+    }
+
+    // Get items to check based on type
+    const itemsToCheck = []
+
+    // Handle arrays
+    if (Array.isArray(currentValue)) {
+      if (currentValue.length === 0) continue // Empty array = empty, check next
+      for (let i = 0; i < currentValue.length; i++) {
+        itemsToCheck.push(currentValue[i])
+      }
+    }
+    // Handle Maps
+    else if (currentValue instanceof Map) {
+      if (currentValue.size === 0) continue // Empty Map = empty, check next
+      for (const [, v] of currentValue) {
+        itemsToCheck.push(v)
+      }
+    }
+    // Handle Sets
+    else if (currentValue instanceof Set) {
+      if (currentValue.size === 0) continue // Empty Set = empty, check next
+      for (const v of currentValue) {
+        itemsToCheck.push(v)
+      }
+    }
+    // Handle regular objects
+    else {
+      const keys = Object.keys(currentValue)
+      if (keys.length === 0) continue // Empty object = empty, check next
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i]
+        if (Object.prototype.hasOwnProperty.call(currentValue, key)) {
+          itemsToCheck.push(currentValue[key])
+        }
+      }
+    }
+
+    // Check if any item is non-empty
+    for (let i = 0; i < itemsToCheck.length; i++) {
+      const item = itemsToCheck[i]
+
+      // Quick primitive check
+      if (typeof item !== 'object' || item === null) {
+        if (!isPrimitiveEmpty(item, config)) {
+          return false // Found non-empty primitive
+        }
+        continue
+      }
+
+      // Check for non-empty types
+      if (isNonEmptyType(item?.constructor?.name)) {
+        return false // Found non-empty type instance
+      }
+
+      // Check WeakMap/WeakSet
+      if (item instanceof WeakMap || item instanceof WeakSet) {
+        return false // Non-empty by definition
+      }
+
+      // Push nested object to stack for deeper checking
+      stack.push({ value: item, depth: depth + 1, processed: false })
     }
   }
-  return true
+
+  return true // All items checked and found empty
 }
 
 export default is_empty_nested

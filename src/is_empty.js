@@ -4,11 +4,10 @@ import { isNonEmptyType, getConfig } from './config.js'
  * Checks if a value is empty.
  *
  * @param {*} value - The value to check.
- * @param {object} options - Optional configuration override.
  * @returns {boolean} - Returns true if the value is empty, otherwise false.
  */
-const is_empty = (value, options = null) => {
-  const config = options || getConfig()
+const is_empty = (value) => {
+  const config = getConfig()
 
   // Handle undefined
   if (value === undefined) return true
