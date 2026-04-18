@@ -28,20 +28,60 @@ module.exports = [
     nestExpect: true
   },
 
-  //? NaN : isEmpty >> false
+  //? NaN : isEmpty >> true (NaN is considered empty by default)
   {
     uid: 'TI:004',
     input: NaN,
+    expect: true,
+    nestExpect: true
+  },
+
+  //? isNaN function : isEmpty >> true (function treated as empty by default)
+  {
+    uid: 'TI:005',
+    input: isNaN,
+    expect: true,
+    nestExpect: true
+  },
+
+  //? Symbol : isEmpty >> true (symbol treated as empty by default)
+  {
+    uid: 'TI:005a',
+    input: Symbol('test'),
+    expect: true,
+    nestExpect: true
+  },
+
+  //? BigInt(0) : isEmpty >> false (zero BigInt is not empty by default)
+  {
+    uid: 'TI:005b',
+    input: BigInt(0),
     expect: false,
     nestExpect: false
   },
 
-  //? isNaN : isEmpty >> false
+  //? BigInt(1) : isEmpty >> false
   {
-    uid: 'TI:005',
-    input: isNaN,
+    uid: 'TI:005c',
+    input: BigInt(1),
     expect: false,
     nestExpect: false
+  },
+
+  //? Function : isEmpty >> true (function treated as empty by default)
+  {
+    uid: 'TI:005d',
+    input: function test() {},
+    expect: true,
+    nestExpect: true
+  },
+
+  //? Arrow Function : isEmpty >> true
+  {
+    uid: 'TI:005e',
+    input: () => 'test',
+    expect: true,
+    nestExpect: true
   },
 
   //! OBJECTS
@@ -153,8 +193,24 @@ module.exports = [
     nestExpect: false
   },
 
+  //? Infinity : isEmpty >> false
+  {
+    uid: 'TI:027a',
+    input: Infinity,
+    expect: false,
+    nestExpect: false
+  },
+
+  //? -Infinity : isEmpty >> false
+  {
+    uid: 'TI:027b',
+    input: -Infinity,
+    expect: false,
+    nestExpect: false
+  },
+
   //! DATES
-  //? Not  empty array : isEmpty >> false
+  //? Date.now() timestamp number : isEmpty >> false
   {
     uid: 'TI:028',
     input: Date.now(),
@@ -162,10 +218,76 @@ module.exports = [
     nestExpect: false
   },
 
-  //? Not  empty array : isEmpty >> false
+  //? new Date() object : isEmpty >> false
   {
     uid: 'TI:029',
     input: new Date(),
+    expect: false,
+    nestExpect: false
+  },
+
+  //! MAP AND SET
+  //? Empty Map : isEmpty >> true
+  {
+    uid: 'TI:029a',
+    input: new Map(),
+    expect: true,
+    nestExpect: true
+  },
+
+  //? Map with entries : isEmpty >> false
+  {
+    uid: 'TI:029b',
+    input: new Map([['key', 'value']]),
+    expect: false,
+    nestExpect: false
+  },
+
+  //? Empty Set : isEmpty >> true
+  {
+    uid: 'TI:029c',
+    input: new Set(),
+    expect: true,
+    nestExpect: true
+  },
+
+  //? Set with values : isEmpty >> false
+  {
+    uid: 'TI:029d',
+    input: new Set([1, 2, 3]),
+    expect: false,
+    nestExpect: false
+  },
+
+  //? WeakMap (always non-empty, can't check contents) : isEmpty >> false
+  {
+    uid: 'TI:029e',
+    input: new WeakMap(),
+    expect: false,
+    nestExpect: false
+  },
+
+  //? WeakSet (always non-empty, can't check contents) : isEmpty >> false
+  {
+    uid: 'TI:029f',
+    input: new WeakSet(),
+    expect: false,
+    nestExpect: false
+  },
+
+  //! REGEXP
+  //? RegExp : isEmpty >> false
+  {
+    uid: 'TI:029g',
+    input: /test/,
+    expect: false,
+    nestExpect: false
+  },
+
+  //? new RegExp() : isEmpty >> false
+  {
+    uid: 'TI:029h',
+    input: new RegExp('test'),
     expect: false,
     nestExpect: false
   },
@@ -204,7 +326,7 @@ module.exports = [
     nestExpect: false
   },
 
-  //? Nested OBJECT : isEmpty >> false [even though it's empty]
+  //? Nested OBJECT with only empty values : isEmpty >> false (has keys), isEmptyNested >> true (all values empty)
   {
     uid: 'TI:034',
     input: {
@@ -216,7 +338,7 @@ module.exports = [
       }
     },
     expect: false,
-    nestExpect: false
+    nestExpect: true
   },
 
   //? Nested ARRAY : isEmpty >> false [even though it's empty]
